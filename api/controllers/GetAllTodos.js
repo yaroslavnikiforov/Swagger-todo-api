@@ -1,5 +1,6 @@
 "use strict";
 var client = require("../helpers/es");
+var monitor = require("../helpers/monitor");
 
 module.exports = {
   GetAllTodos: GetAllTodos
@@ -25,6 +26,7 @@ function GetAllTodos(req, res) {
         });
         res.header("Content-Type", "application/json");
         res.end(JSON.stringify(results));
+        monitor(start, "GetAllTodos");
       }
     }
   );
